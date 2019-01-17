@@ -6,8 +6,9 @@
 try:
     import sys, os, getopt, subprocess
     from pyautogui import screenshot
+    from datetime import datetime
 except:
-    l = ['sys', 'os','getopt', 'pyautogui']
+    l = ['sys', 'os','getopt', 'pyautogui', 'datetime']
     for i in l:
         os.system('pip install '+ i)
 
@@ -36,28 +37,39 @@ def main(argv):
             code_file = d['-i'] + '.cpp'
             exe_file = d['-i'] + '.exe'
     
-    if '-h' in d.keys():
+    if ('-h' in d.keys()) or (not d):
         usage()
-    print(d)
+        return 
+    print(d)                # Line to check if the dictionary is initialized correctly
+
     run(code_file, exe_file, compiler, d['-i'])
         
 def usage():
-    print('python compiler.py -v <compiler> (1 for c, 2 for cpp) -i <filename> (without .c/.cpp extension) ')
+    print('Usage:\npython compiler.py -v <compiler> (1 for c, 2 for cpp) -i <filename> (without .c/.cpp extension)\n')
+    print("Both arguments are mandatory")
 
 def run(code_file, exe_file, compiler, a):
     os.system("echo Compiling " + code_file)
     #os.system(compiler + ' ' + code_file) # + ' -o ' + exe_file)
-    subprocess.call(compiler + ' ' + code_file)
+    # Prints the command being executed
+    string = "echo {} {} -o {}".format(compiler, code_file, exe_file)
+    print(string)
+    os.system(string)
+    os.system("echo .//{}.out".format(exe_file))
+    #subprocess.call(compiler + ' ' + code_file + ' -o ' + './/a.out') # replace a.out with exe
+    os.system(compiler + ' ' + code_file + ' -o ' + exe_file)
+    os.system('{} {} -o {}'.format(compiler, code_file, exe_file))
     # Runs if the program compiled properly
     if not os.system(compiler + ' ' + code_file): # + ' -o ' + exe_file):
         os.system("echo Compiled Successfully...")
         os.system("echo -------------------------------------")
-        os.system("echo Running " + exe_file)
+        os.system("echo Running {}".format(exe_file))
         os.system("echo -------------------------------------")
-        subprocess.call('a.exe')
-    
-    screenshot(imageFilename = a + '_output.png')
+        # subprocess.call('.//a.exe')
+        os.startfile('a.out')
+    # Saves the output as a screenshot
+    screenshot(imageFilename = a + '_output_{}.png'.format(datetime.now().strftime("%y-%m-%d-%H-%M")))
 
 if __name__=='__main__':
-    print(sys.argv[1:])
+    print(sys.argv[1:])     # Prints the arguments passed.
     main(sys.argv[1:])
