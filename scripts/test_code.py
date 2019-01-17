@@ -47,8 +47,7 @@ def usage():
 def run(code_file, exe_file, compiler, a):
     os.system("echo Compiling " + code_file)
     #os.system(compiler + ' ' + code_file) # + ' -o ' + exe_file)
-    comm = compiler + ' ' + code_file
-    subprocess.call(comm)
+    subprocess.call(compiler + ' ' + code_file)
     # Runs if the program compiled properly
     if not os.system(compiler + ' ' + code_file): # + ' -o ' + exe_file):
         os.system("echo Compiled Successfully...")
