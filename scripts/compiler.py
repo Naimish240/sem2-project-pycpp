@@ -8,7 +8,7 @@ from pyautogui import screenshot
 
 # Installs all dependencies
 def setup_stuff():
-    l = ['sys', 'os',]'getopt', 'pyautogui']
+    l = ['sys', 'os','getopt', 'pyautogui']
     for i in l:
         os.system('pip install '+ i)
 
