@@ -3,11 +3,10 @@
 # Usage:
 # python compiler.py -v <compiler> (1 for c, 2 for cpp) -i <filename> (without .c/.cpp extension) 
 
-import sys, os, getopt
-from pyautogui import screenshot
-
-# Installs all dependencies
-def setup_stuff():
+try:
+    import sys, os, getopt
+    from pyautogui import screenshot
+except:
     l = ['sys', 'os','getopt', 'pyautogui']
     for i in l:
         os.system('pip install '+ i)
@@ -23,6 +22,7 @@ def main(argv):
         print(err)      
         usage()
         sys.exit(2)
+    print("opts: ",opts)
     for o, a in opts:
         # Prints help menu
         if o in ("-h", "--help"):
@@ -61,5 +61,5 @@ def run(code_file, exe_file, a, compiler):
     screenshot(imageFilename = a + '_output.png')
 
 if __name__=='__main__':
-    print(sys.argv)
+    print(sys.argv[1:])
     main(sys.argv[1:])

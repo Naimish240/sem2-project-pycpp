@@ -5,6 +5,7 @@
 
 import sys, os, getopt
 from pyautogui import screenshot
+from datetime import datetime
 
 def main(argv):
     cpp_file = ''
@@ -41,7 +42,7 @@ def run(cpp_file, exe_file, a):
         os.system("echo -------------------------------------")
         os.system(exe_file)
     
-    screenshot(imageFilename = a + '_output.png')
+    screenshot(imageFilename = a + '_output_{}.png'.format(datetime.now().strftime("%y-%m-%d-%H-%M")))
 
 if __name__=='__main__':
     main(sys.argv[1:])
