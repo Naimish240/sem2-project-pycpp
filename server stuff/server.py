@@ -26,6 +26,7 @@ while True:
     f.close()
 
     print('Done sending')
+    # Figure out ways to shut this thing down 
     #conn.send(b'Thank you for connecting')
     conn.shutdown(socket.SHUT_WR)
 

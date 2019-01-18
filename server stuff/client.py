@@ -9,7 +9,7 @@ port = 60000                           # Reserve a port for your service.
 s.connect((host, port))
 s.send(b"Hello server!")
 
-with open('received_file', 'wb') as f:
+with open('received_file.txt', 'wb') as f:
     print ('file opened')
     while True:
         print('receiving data...')

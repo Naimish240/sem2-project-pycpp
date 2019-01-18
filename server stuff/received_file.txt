@@ -1,3 +1,0 @@
-lorem ipsum
-this is a test text file
-inshallah this shall work
