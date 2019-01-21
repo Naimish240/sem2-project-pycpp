@@ -3,7 +3,7 @@
 int main()
 {
     int a;
-    std :: cout<<"hello world\n";
+    std :: cout<<"Hello World\n";
     std :: cin>>a;
     std :: cout<<a;
 }
